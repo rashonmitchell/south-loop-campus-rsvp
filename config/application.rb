@@ -65,5 +65,6 @@ module SouthLoopCampusRsvp
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.precompile = %w(application.js application.css)
+    config.assets.precompile += %w[ *.png *.jpeg *.jpg *.gif ]
   end
 end
