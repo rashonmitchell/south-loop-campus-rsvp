@@ -29,7 +29,7 @@ set :rvm_type, :user # user's rvm
 # Repository (if any) configuration.
 set :scm,         :git
 set :deploy_via,  :remote_cache
-set :repository,  "git@github.com:rutkovsky/christcore_rails.git"
+set :repository,  "git@github.com:rutkovsky/south-loop-campus-rsvp.git"
 set :branch,      "master"
 
 # Run on Linux: `$ ssh-add` or on OSX: `$ ssh-add -K` for "forward_agent".
