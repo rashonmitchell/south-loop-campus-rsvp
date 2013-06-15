@@ -22,6 +22,7 @@ end
 gem 'haml-rails'
 gem 'compass'
 gem 'mongoid'
+gem 'puma'
 
 
 # To use ActiveModel has_secure_password
@@ -31,10 +32,12 @@ gem 'mongoid'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'capistrano_colors'
 
 # To use debugger
 # gem 'debugger'
