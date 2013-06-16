@@ -45,5 +45,14 @@
       %br
       RED LINE = JACKSON STOP
 
-    = image_tag('ill_be_there.png')
-    = image_tag('done_done.png')
+  %form.b-rsvp-form
+    = image_tag('ill_be_there.png', class: 'ill-be-there')
+    .b-inputs
+      %input{name: 'name'}
+      %input{name: 'name'}
+      %input{name: 'name'}
+      %b I'M
+      %b.font-blue BRINGING
+      = select_tag "people", options_for_select([*1..15]), include_blank: true
+      %b PEOPLE
+      = image_tag('done_done.png', class: 'done-done')

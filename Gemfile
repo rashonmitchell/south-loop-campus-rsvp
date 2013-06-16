@@ -20,7 +20,7 @@ group :assets do
 end
 
 gem 'haml-rails'
-gem 'compass'
+gem 'compass-rails'
 gem 'mongoid'
 gem 'puma'
 
