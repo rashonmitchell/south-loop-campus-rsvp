@@ -47,7 +47,7 @@
 
   %form.b-rsvp-form
     = image_tag('ill_be_there.png', class: 'ill-be-there')
-    .b-inputs
+    .b-inputs.hide
       %input{name: 'name'}
       %input{name: 'name'}
       %input{name: 'name'}
@@ -56,3 +56,9 @@
       = select_tag "people", options_for_select([*1..15]), include_blank: true
       %b PEOPLE
       = image_tag('done_done.png', class: 'done-done')
+:javascript
+  $('.ill-be-there').click(function() {
+    var inputs = $('.b-inputs').slideToggle(100, function() {
+      inputs.css('display') == 'block' && $(window).scrollTop(inputs.offset().top)
+    })
+  })
