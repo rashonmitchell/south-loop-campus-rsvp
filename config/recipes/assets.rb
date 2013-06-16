@@ -32,6 +32,7 @@ namespace :deploy do
       find_servers_for_task(current_task).each do |server|
         run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}/"
       end
+      run "ln -s #{shared_path}/assets #{current_path}/public/assets"
       run_locally "rake assets:clean"
     end
   end

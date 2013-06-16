@@ -41,6 +41,8 @@ default_run_options[:pty]   = true
 
 set :rvm_ruby_string, "2.0.0"# set :default_stage, "staging"
 
+after 'deploy:create_symlink', "deploy:assets:precompile_locally"
+
 # set :application, "south_loop_rsvp"
 # set :repository,  "git@github.com:rutkovsky/south-loop-campus-rsvp.git"
 # 
