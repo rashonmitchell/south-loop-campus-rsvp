@@ -48,17 +48,43 @@
   %form.b-rsvp-form
     = image_tag('ill_be_there.png', class: 'ill-be-there')
     .b-inputs.hide
-      %input{name: 'name'}
-      %input{name: 'name'}
-      %input{name: 'name'}
-      %b I'M
-      %b.font-blue BRINGING
-      = select_tag "people", options_for_select([*1..15]), include_blank: true
-      %b PEOPLE
-      = image_tag('done_done.png', class: 'done-done')
+      .b-form-inputs
+        %input{placeholder: "First", name: 'name_one'}
+        %input{placeholder: "Last", name: 'name_two'}
+        %input{placeholder: "", name: 'name_three'}
+        %b I'M
+        %b.font-blue BRINGING
+        = select_tag "bringing", options_for_select([*1..15]), include_blank: true
+        %b PEOPLE
+        = image_tag('done_done.png', class: 'done-done')
+      .spinner.hide
+      .thank-you.hide
+        Thank you for RSVP'ing for
+        %b.font-blue Sunday July 7, 2013 11am.
+        See you there!
 :javascript
-  $('.ill-be-there').click(function() {
-    var inputs = $('.b-inputs').slideToggle(100, function() {
-      inputs.css('display') == 'block' && $(window).scrollTop(inputs.offset().top)
+  (function() {
+    var spinner = new Spinner()
+      , $inputs = $('.b-inputs')
+      , $formInputs = $('.b-form-inputs')
+      , onSuccess = function() {
+        spinner.spin(false)
+        $('.spinner').hide()
+        $('.thank-you').show()
+    }
+
+    $('.ill-be-there').click(function() {
+      $inputs.slideToggle(100, function() {
+        $inputs.css('display') == 'block' && $(window).scrollTop($inputs.offset().top)
+      })
     })
-  })
+
+
+    $('.done-done').click(function() {
+      $formInputs.hide()
+      spinner.spin($('.spinner').show()[0])
+      var $form = $('.b-rsvp-form')
+        , data = $form.serialize()
+        $.post('/rsvps', data, onSuccess)
+    })
+  })()

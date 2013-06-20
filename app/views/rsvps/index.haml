@@ -1,0 +1,17 @@
+= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+
+.container{style: "background: #eee"}
+  %table.table.table-striped.table-bordered
+    %tr
+      %th Name one
+      %th Name two
+      %th Name three
+      %th Bringing
+      %th Created at
+    - @rsvps.each do |rsvp|
+      %tr
+        %td= rsvp.name_one
+        %td= rsvp.name_two
+        %td= rsvp.name_three
+        %td= rsvp.bringing
+        %td= rsvp.created_at
