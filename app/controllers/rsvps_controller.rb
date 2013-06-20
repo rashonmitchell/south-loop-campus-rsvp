@@ -3,7 +3,6 @@ class RsvpsController < ApplicationController
 
   def create
     Rsvp.create!(params.slice(:name_one, :name_two, :name_three, :bringing))
-    sleep 5
     render json: {ok: true}
   end
 

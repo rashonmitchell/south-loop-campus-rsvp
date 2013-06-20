@@ -62,7 +62,18 @@
         Thank you for RSVP'ing for
         %b.font-blue Sunday July 7, 2013 11am.
         See you there!
+
 :javascript
+  $.fn.serializeJSON = function() {
+    var json
+    json = {}
+    _($(this).serializeArray()).each(function(field) {
+      return json[field.name] = field.value
+    })
+    return json
+  };
+
+
   (function() {
     var spinner = new Spinner()
       , $inputs = $('.b-inputs')
@@ -79,12 +90,18 @@
       })
     })
 
-
     $('.done-done').click(function() {
+      if (_($('.b-inputs input').serializeJSON())
+        .chain()
+        .toArray()
+        .compact()
+        .isEmpty()
+        .value()) return $('input').first().focus()
+
       $formInputs.hide()
       spinner.spin($('.spinner').show()[0])
       var $form = $('.b-rsvp-form')
-        , data = $form.serialize()
+        , data = $form.serializeJSON()
         $.post('/rsvps', data, onSuccess)
     })
   })()
