@@ -53,7 +53,7 @@
       .b-form-inputs
         %input{placeholder: "First", name: 'name_one'}
         %input{placeholder: "Last", name: 'name_two'}
-        %input{placeholder: "", name: 'name_three'}
+        %input{placeholder: "Email", type: "email", name: 'name_three'}
         %b I'M
         %b.font-blue BRINGING
         = select_tag "bringing", options_for_select([*1..15]), include_blank: true
@@ -74,7 +74,6 @@
     })
     return json
   };
-
 
   (function() {
     var spinner = new Spinner()
@@ -97,8 +96,12 @@
         .chain()
         .toArray()
         .compact()
-        .isEmpty()
-        .value()) return $('input').first().focus()
+        .value().length < 3) return (function() {
+          $('input').each(function(input) {
+            var $this = $(this)
+            if(!$this.val()) return ($this.focus() && false)
+          })
+        })()
 
       $formInputs.hide()
       spinner.spin($('.spinner').show()[0])
