@@ -3,9 +3,15 @@
 .container{style: "background: #eee"}
   %table.table.table-striped.table-bordered
     %tr
-      %th Name one
-      %th Name two
-      %th Name three
+      %td{colspan: 5}
+        Download:
+        = link_to "CSV", rsvps_path(format: :csv)
+        |
+        = link_to "XLS", rsvps_path(format: :xls)
+    %tr
+      %th First name
+      %th Last name
+      %th Email
       %th Bringing
       %th Created at
     - @rsvps.each do |rsvp|
@@ -14,4 +20,4 @@
         %td= rsvp.name_two
         %td= rsvp.name_three
         %td= rsvp.bringing
-        %td= rsvp.created_at
+        %td= l rsvp.created_at, format: "%b %d %I.%M%p'"
