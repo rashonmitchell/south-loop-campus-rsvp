@@ -2,6 +2,7 @@
 %html
   %head
     %title South Loop Campus
+    = javascript_include_tag "ga" if Rails.env.production?
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'http://code.jquery.com/jquery-2.0.0.min.js'
     = javascript_include_tag "/spin.min.js"
